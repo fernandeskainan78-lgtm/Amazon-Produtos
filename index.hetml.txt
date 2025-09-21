@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitrine Avançada de Produtos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+    header {
+      background-color: #FF9900;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 { margin: 0; }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #333;
+      flex-wrap: wrap;
+    }
+    nav button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 4px;
+    }
+    nav button:hover {
+      background-color: #555;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+    .product-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin: 15px;
+      width: 250px;
+      text-align: center;
+      padding: 15px;
+      display: none; /* inicialmente escondido, filtrado por JS */
+    }
+    .product-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .product-card h2 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .product-card p {
+      font-size: 14px;
+      color: #555;
+      margin: 10px 0;
+    }
+    .product-card a {
+      display: inline-block;
+      background-color: #FF9900;
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    .product-card a:hover {
+      background-color: #cc7a00;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #222;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Vitrine de Produtos</h1>
+    <p>Escolha sua categoria e encontre os melhores produtos da Amazon!</p>
+  </header>
+
+  <nav>
+    <button onclick="filterSelection('all')">Todos</button>
+    <button onclick="filterSelection('smart-home')">Smart Home</button>
+    <button onclick="filterSelection('wearables')">Wearables</button>
+    <button onclick="filterSelection('eletronicos')">Eletrônicos</button>
+  </nav>
+
+  <div class="container">
+    <!-- Produto 1: Smart Home -->
+    <div class="product-card smart-home">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/61Z4Fh2gVUL._AC_SL1000_.jpg" alt="Echo Dot">
+      <h2>Echo Dot (5ª Geração)</h2>
+      <p>Smart speaker com Alexa, som potente e design moderno.</p>
+      <a href="SEU_LINK_AFILIADO_AQUI" target="_blank">Ver na Amazon</a>
+    </div>
+
+    <!-- Produto 2: Wearables -->
+    <div class="product-card wearables">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/81W0Q5mKQ2L._AC_SL1500_.jpg" alt="Smartwatch Mibro">
+      <h2>Smartwatch Mibro C2</h2>
+      <p>Controle suas notificações e acompanhe suas atividades físicas.</p>
+      <a href="SEU_LINK_AFILIADO_AQUI" target="_blank">Ver na Amazon</a>
+    </div>
+
+    <!-- Produto 3: Eletrônicos -->
+    <div class="product-card eletronicos">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/61ZKKV+z3JL._AC_SL1000_.jpg" alt="Kindle Paperwhite">
+      <h2>Kindle Paperwhite</h2>
+      <p>Leitor digital com luz embutida, perfeito para ler em qualquer lugar.</p>
+      <a href="SEU_LINK_AFILIADO_AQUI" target="_blank">Ver na Amazon</a>
+    </div>
+
+    <!-- Produto 4: Smart Home -->
+    <div class="product-card smart-home">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/61Z4Fh2gVUL._AC_SL1000_.jpg" alt="Lâmpada Inteligente">
+      <h2>Lâmpada Inteligente Smarteck</h2>
+      <p>Controle suas luzes pelo celular ou Alexa.</p>
+      <a href="SEU_LINK_AFILIADO_AQUI" target="_blank">Ver na Amazon</a>
+    </div>
+
+    <!-- Adicione mais produtos aqui -->
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Sua Vitrine de Produtos | Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    function filterSelection(category) {
+      let products = document.getElementsByClassName('product-card');
+      if(category === 'all') category = '';
+      for(let i = 0; i < products.length; i++) {
+        removeClass(products[i], 'show');
+        if(products[i].className.indexOf(category) > -1) addClass(products[i], 'show');
+      }
+    }
+
+    function addClass(element, name) {
+      let arr1 = element.className.split(" ");
+      if(arr1.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
+
+    function removeClass(element, name) {
+      let arr1 = element.className.split(" ");
+      while(arr1.indexOf(name) > -1) {
+        arr1.splice(arr1.indexOf(name), 1);
+      }
+      element.className = arr1.join(" ");
+    }
+
+    // Mostra todos produtos por padrão
+    filterSelection('all');
+
+    // Exibe os produtos filtrados
+    let style = document.createElement('style');
+    style.innerHTML = ".product-card.show { display: block; }";
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
